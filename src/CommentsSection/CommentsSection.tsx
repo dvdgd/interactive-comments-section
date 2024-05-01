@@ -1,13 +1,15 @@
+import { useComments } from "../shared/hooks/useComments";
 import { CommentItem } from "./components/CommentItem"
-import data from "../shared/data.json";
 
 function CommentsList() {
+  const { comments } = useComments();
+  console.log(comments);
+
   return (
     <ul>
-      {data.comments.map((comment) => {
+      {comments.map((comment) => {
         return (
           <li key={comment.id} id={`comment-${comment.id}`}>
-            {/* @ts-ignore */}
             <CommentItem comment={comment} />
           </li>
         );

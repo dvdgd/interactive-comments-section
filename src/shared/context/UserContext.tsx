@@ -5,12 +5,12 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, _] = useState(() => {
-    const savedData = localStorage.getItem('data');
+    const savedData = localStorage.getItem('@user');
     return savedData ? JSON.parse(savedData) : currentUser;
   });
 
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(user));
+    localStorage.setItem('@user', JSON.stringify(user));
   }, [user]);
 
   return (

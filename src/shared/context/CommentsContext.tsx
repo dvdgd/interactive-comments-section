@@ -2,16 +2,25 @@ import { comments as initalComents } from "../data.json";
 import React, { createContext, useState, useEffect } from 'react';
 import { Comment } from "../types";
 
-export const CommentsContext = createContext({});
+interface ICommentContext {
+  comments: Comment[];
+  addComment: (comment: Comment) => void;
+  deleteComment: (id: number) => void;
+  replyComment: (id: number, reply: Comment) => void;
+  editComment: (id: number, content: string) => void;
+  scoreComment: (id: number, score: number) => void;
+}
+
+export const CommentsContext = createContext({} as ICommentContext);
 
 export const CommentsProvider = ({ children }: { children: React.ReactNode }) => {
   const [comments, setComments] = useState<Comment[]>(() => {
-    const savedData = localStorage.getItem('data');
+    const savedData = localStorage.getItem('@comments');
     return savedData ? JSON.parse(savedData) : initalComents;
   });
 
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(comments));
+    localStorage.setItem('@comments', JSON.stringify(comments));
   }, [comments]);
 
   const addComment = (comment: Comment) => {

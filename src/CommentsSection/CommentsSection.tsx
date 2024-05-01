@@ -3,7 +3,6 @@ import { CommentItem } from "./components/CommentItem"
 
 function CommentsList() {
   const { comments } = useComments();
-  console.log(comments);
 
   return (
     <ul>

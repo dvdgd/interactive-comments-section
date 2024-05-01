@@ -1,9 +1,9 @@
-import { Comment } from "../../shared/types";
+import { Comment, ReplyComment } from "../../shared/types";
 import IconMinus from "../../assets/icon-minus.svg";
 import IconPlus from "../../assets/icon-plus.svg";
 
 export type CommentItemProps = {
-  comment: Comment;
+  comment: ReplyComment | Comment;
 };
 
 function CommentHeader({ comment }: CommentItemProps) {
@@ -49,12 +49,25 @@ function CommentScore({ comment }: CommentItemProps) {
 
 export function CommentItem({ comment }: CommentItemProps) {
   return (
-    <article>
-      <CommentScore comment={comment} />
-      <div>
-        <CommentHeader comment={comment} />
-        <p>{comment.content}</p>
-      </div>
-    </article>
+    <>
+      <article>
+        <CommentScore comment={comment} />
+        <div>
+          <CommentHeader comment={comment} />
+          <p>{comment.content}</p>
+        </div>
+      </article>
+      {comment.replies?.length > 0 && (
+        <ul>
+          {comment.replies.map((reply) => {
+            return (
+              <li key={reply.id} id={`comment-reply-${reply.id}`} >
+                <CommentItem key={reply.id} comment={reply} />
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </>
   );
 }

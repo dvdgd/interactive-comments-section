@@ -1,7 +1,12 @@
 import { currentUser } from "../data.json";
 import React, { createContext, useState, useEffect } from 'react';
+import { User } from "../types";
 
-export const UserContext = createContext({});
+interface IUserContext {
+  user: User;
+}
+
+export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, _] = useState(() => {

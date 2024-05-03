@@ -16,6 +16,19 @@
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-family: 'Rubik', sans-serif;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+h3 {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--neutral-dark-blue);
 }
 
 body {
@@ -27,4 +40,10 @@ body {
   justify-content: center;
 
   background-color: var(--neutral-very-light-gray);
+  font-size: .9rem;
+  color: var(--neutral-grayish-blue);
+}
+
+time, span {
+  font: inherit;
 }

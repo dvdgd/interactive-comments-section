@@ -1,5 +1,7 @@
 import { useComments } from "../shared/hooks/useComments";
-import { CommentItem } from "./components/CommentItem"
+import './CommentsSection.style.css';
+import { CommentForm } from "./components/CommentForm/CommentForm";
+import { CommentItem } from "./components/CommentItem/CommentItem";
 
 function CommentsList() {
   const { comments } = useComments();
@@ -22,6 +24,7 @@ export function CommentsSection() {
     <main>
       <section>
         <CommentsList />
+        <CommentForm />
       </section>
     </main>
   )

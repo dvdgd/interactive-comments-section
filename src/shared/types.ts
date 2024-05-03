@@ -6,15 +6,12 @@ export type User = {
   };
 }
 
-export type ReplyComment = Comment & {
-  repliyingTo: string;
-}
-
 export type Comment = {
-  id: number;
+  id: string;
   content: string;
   createdAt: string;
   score: number;
   user: User;
-  replies: ReplyComment[];
+  replyingTo?: string;
+  replies: Comment[];
 }

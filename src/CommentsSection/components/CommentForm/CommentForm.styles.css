@@ -1,0 +1,35 @@
+img.form-avatar {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: .5rem;
+  width: 100%;
+}
+
+form textarea {
+  border-radius: .25rem;
+  border: 1px solid var(--neutral-light-gray);
+  padding: .5rem;
+  resize: none; 
+  width: 100%;
+}
+
+button.form-submit {
+  background-color: var(--primary-moderate-blue);
+  color: var(--neutral-white);
+  
+  width: 5.5rem;
+  height: 2.5rem;
+
+  border-radius: .5rem;
+  border: none;
+  cursor: pointer;
+  font-size: .9rem;
+  text-transform: uppercase;
+}

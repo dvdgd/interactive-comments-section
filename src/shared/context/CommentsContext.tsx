@@ -10,6 +10,10 @@ interface ICommentContext {
     replyingTo?: string;
     parentCommentId?: string;
   }) => void;
+  deleteComment: (params: {
+    commentId: string;
+    parentId?: string;
+  }) => void;
 }
 
 export const CommentsContext = createContext({} as ICommentContext);
@@ -49,10 +53,26 @@ export const CommentsProvider = ({ children }: { children: React.ReactNode }) =>
     setComments([...comments]);
   }
 
+  const deleteComment: ICommentContext['deleteComment'] = (params) => {
+    if (!params.parentId) {
+      setComments(comments.filter((comment) => comment.id !== params.commentId));
+      return;
+    }
+
+    const parentComment = comments.find((comment) => comment.id === params.parentId);
+    if (!parentComment) {
+      return;
+    }
+
+    parentComment.replies = parentComment.replies.filter((comment) => comment.id !== params.commentId);
+    setComments([...comments]);
+  }
+
   return (
     <CommentsContext.Provider value={{
       comments,
       addComment,
+      deleteComment,
     }}>
       {children}
     </CommentsContext.Provider>

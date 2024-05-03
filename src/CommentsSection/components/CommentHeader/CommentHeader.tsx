@@ -1,3 +1,4 @@
+import { useComments } from '../../../shared/hooks/useComments';
 import { useCurrentFormComment } from '../../../shared/hooks/useShowForm';
 import { useUser } from '../../../shared/hooks/useUser';
 import { IconDelete } from '../../../shared/icons/IconDelete';
@@ -31,6 +32,7 @@ function CommentHeaderButtons({
   userComment,
 }: CommentItemProps & { userComment: boolean }) {
   const { openForm } = useCurrentFormComment();
+  const { deleteComment } = useComments();
 
   const onReply = () => {
     openForm({
@@ -51,12 +53,18 @@ function CommentHeaderButtons({
     });
   }
 
+  const onDelete = () => {
+    deleteComment({
+      commentId: comment.id,
+      parentId: comment.parentId,
+    });
+  }
+
   return (
     <div className="header-buttons-container">
       {userComment ? (
         <>
-          {/* // TODO: handle on delete */}
-          <HeadearButton icon={<IconDelete />} onClick={() => { }} color="soft-red">
+          <HeadearButton icon={<IconDelete />} onClick={onDelete} color="soft-red">
             Delete
           </HeadearButton>
           <HeadearButton icon={<IconEdit />} onClick={onEdit}>

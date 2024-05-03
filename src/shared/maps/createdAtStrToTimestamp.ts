@@ -24,11 +24,6 @@ const parseRelativeTime = (relativeTime: string | Date) => {
     year: 1000 * 60 * 60 * 24 * 365,
   }[normalizedUnit.toLowerCase()];
   if (!multiplier) {
-    console.log('Invalid unit', {
-      unit,
-      value,
-      relativeTime,
-    })
     return;
   }
 

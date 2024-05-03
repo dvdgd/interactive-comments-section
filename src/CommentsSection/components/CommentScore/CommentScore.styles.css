@@ -23,6 +23,15 @@ div.score-container button {
   justify-content: center;
 }
 
-div.score-container button:hover svg path {
+div.score-container button:hover svg path,
+div.score-container button.hit svg path {
   fill: var(--primary-moderate-blue);
+}
+
+div.score-container button.hit:hover svg path {
+  fill: var(--neutral-light-gray);
+}
+
+div.score-container button.hit:hover svg path {
+  fill: var(--neutral-light-gray);
 }

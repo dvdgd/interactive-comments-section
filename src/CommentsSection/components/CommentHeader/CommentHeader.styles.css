@@ -11,6 +11,11 @@ img.header-user-avatar {
   height: 1.5rem;
 }
 
+h3 {
+  display: flex;
+  gap: .25rem;
+}
+
 span.header-you-indicator {
   background-color: var(--primary-moderate-blue);
   color: var(--neutral-white);

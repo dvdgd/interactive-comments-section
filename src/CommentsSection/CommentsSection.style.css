@@ -1,6 +1,6 @@
 section {
-  margin: 2rem;
-  max-width: 650px;
+  margin: .75rem;
+  max-width: 768px;
 }
 
 ul {
@@ -45,4 +45,14 @@ div.comment-container {
 div.comment-container p span {
   color: var(--primary-moderate-blue);
   font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  article.comment-item {
+    grid-template-columns: repeat(3, auto);
+    grid-template-areas: 
+      'score user buttons'
+      'score comment comment'
+      'score comment comment';
+  }
 }

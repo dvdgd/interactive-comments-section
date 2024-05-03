@@ -1,20 +1,39 @@
 import { createContext, useState } from "react";
+import { Comment } from "../types";
 
-interface ShowFormContextType {
-  currentComment: { commentId?: string } | null;
-  openForm: ({ commentId }: { commentId: string }) => void;
+type CurrentComment = {
+  formAtCommentId?: string;
+  reply?: {
+    parentCommentId: string;
+    replyingTo: string;
+  }
+  edit?: {
+    comment: Comment;
+    parentCommentId?: string;
+  }
+}
+
+interface CurrentFormCommentType {
+  currentComment: CurrentComment | null;
+  openForm: (params: CurrentComment) => void;
   closeForm: () => void;
 }
-export const ShowFormContext = createContext({} as ShowFormContextType);
+export const CurrentFormCommentContext = createContext({} as CurrentFormCommentType);
 
-export function ShowFormProvider({ children }: { children: React.ReactNode }) {
+export function CurrentFormCommentProvider({ children }: { children: React.ReactNode }) {
   const [currentComment, setCurrentComment] =
-    useState<ShowFormContextType['currentComment']>(null);
+    useState<CurrentFormCommentType['currentComment']>(null);
 
-  const openForm: ShowFormContextType['openForm'] = ({
-    commentId
+  const openForm: CurrentFormCommentType['openForm'] = ({
+    formAtCommentId,
+    reply,
+    edit,
   }) => {
-    setCurrentComment({ commentId });
+    setCurrentComment({
+      formAtCommentId,
+      reply,
+      edit,
+    });
   }
 
   const closeForm = () => {
@@ -22,13 +41,13 @@ export function ShowFormProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ShowFormContext.Provider value={{
+    <CurrentFormCommentContext.Provider value={{
       currentComment,
       openForm,
       closeForm,
     }}>
       {children}
-    </ShowFormContext.Provider>
+    </CurrentFormCommentContext.Provider>
   );
 }
 

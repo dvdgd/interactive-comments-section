@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import { ShowFormContext } from "../context/ShowFormContext";
+import { CurrentFormCommentContext } from "../context/ShowFormContext";
 
-export const useShowForm = () => useContext(ShowFormContext);
+export const useCurrentFormComment = () => useContext(CurrentFormCommentContext);

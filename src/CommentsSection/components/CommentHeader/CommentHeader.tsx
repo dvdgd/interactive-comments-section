@@ -1,4 +1,4 @@
-import { useShowForm } from '../../../shared/hooks/useShowForm';
+import { useCurrentFormComment } from '../../../shared/hooks/useShowForm';
 import { useUser } from '../../../shared/hooks/useUser';
 import { IconDelete } from '../../../shared/icons/IconDelete';
 import { IconEdit } from '../../../shared/icons/IconEdit';
@@ -30,10 +30,25 @@ function CommentHeaderButtons({
   comment,
   userComment,
 }: CommentItemProps & { userComment: boolean }) {
-  const { openForm } = useShowForm();
+  const { openForm } = useCurrentFormComment();
 
   const onReply = () => {
-    openForm({ commentId: comment.id });
+    openForm({
+      formAtCommentId: comment.id,
+      reply: {
+        parentCommentId: comment?.parentId ?? comment.id,
+        replyingTo: comment.user.username,
+      },
+    });
+  }
+
+  const onEdit = () => {
+    openForm({
+      edit: {
+        comment,
+        parentCommentId: comment?.parentId ?? comment.id,
+      },
+    });
   }
 
   return (
@@ -44,8 +59,7 @@ function CommentHeaderButtons({
           <HeadearButton icon={<IconDelete />} onClick={() => { }} color="soft-red">
             Delete
           </HeadearButton>
-          {/* TODO: handle on edit */}
-          <HeadearButton icon={<IconEdit />} onClick={() => { }}>
+          <HeadearButton icon={<IconEdit />} onClick={onEdit}>
             Edit
           </HeadearButton>
         </>

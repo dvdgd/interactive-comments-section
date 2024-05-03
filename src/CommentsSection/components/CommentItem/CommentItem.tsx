@@ -1,7 +1,8 @@
-import { useShowForm } from "../../../shared/hooks/useShowForm";
+import { useCurrentFormComment } from "../../../shared/hooks/useShowForm";
 import { Comment } from "../../../shared/types";
 import { CardComponent } from "../CardComponent/CardComponent";
 import { CommentForm } from "../CommentForm/CommentForm";
+import { EditCommentForm } from "../CommentForm/EditCommentForm";
 import { CommentHeader } from "../CommentHeader/CommentHeader";
 import { CommentScore } from "../CommentScore/CommentScore";
 import { NestedCommentsList } from "../NestedCommentItem/NestedCommentItem";
@@ -14,10 +15,15 @@ export type CommentItemProps = {
 };
 
 export function CommentItem({ comment }: CommentItemProps) {
-  const { currentComment } = useShowForm();
+  const { currentComment } = useCurrentFormComment();
 
-  const showForm = currentComment?.commentId === comment.id;
+  const showForm = currentComment?.formAtCommentId === comment.id;
   const repliesTo = comment?.replyingTo ? `@${comment.replyingTo}` : '';
+
+  const editing = currentComment?.edit?.comment?.id === comment.id;
+  if (editing) {
+    return <EditCommentForm />
+  }
 
   return (
     <>

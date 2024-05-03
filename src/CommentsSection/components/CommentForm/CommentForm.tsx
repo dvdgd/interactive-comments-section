@@ -1,9 +1,18 @@
+import { useCurrentFormComment } from "../../../shared/hooks/useShowForm";
 import { useUser } from "../../../shared/hooks/useUser";
 import { CardComponent } from "../CardComponent/CardComponent";
 import './CommentForm.styles.css';
+import { useForm } from "./hooks/useForm";
 
 export function CommentForm() {
   const { user } = useUser();
+  const { currentComment } = useCurrentFormComment();
+  const { handleFormSubmit } = useForm();
+
+  const replyingTo = currentComment?.reply?.replyingTo ? `@${currentComment.reply.replyingTo}` : '';
+  const commentContent = currentComment?.edit?.comment?.content ?? '';
+
+  const commentString = `${replyingTo} ${commentContent}`.trim();
 
   return (
     <>
@@ -16,13 +25,13 @@ export function CommentForm() {
           src={`./avatars/${user.image.png}`}
           alt="current user avatar"
         />
-        {/* // TODO: Add the handleFormSubmit function to the onSubmit prop */}
-        <form action="" onSubmit={() => { }}>
+        <form action="" onSubmit={handleFormSubmit}>
           <textarea
             rows={3}
             name="comment"
             id="comment-text-area"
             placeholder="Write a comment..."
+            defaultValue={commentString ?? null}
             required
           >
           </textarea>

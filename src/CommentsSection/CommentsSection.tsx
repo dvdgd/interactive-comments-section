@@ -1,4 +1,4 @@
-import { ShowFormProvider } from "../shared/context/ShowFormContext";
+import { CurrentFormCommentProvider } from "../shared/context/ShowFormContext";
 import { useComments } from "../shared/hooks/useComments";
 import './CommentsSection.style.css';
 import { CommentForm } from "./components/CommentForm/CommentForm";
@@ -23,12 +23,12 @@ function CommentsList() {
 export function CommentsSection() {
   return (
     <main>
-      <ShowFormProvider>
+      <CurrentFormCommentProvider>
         <section>
           <CommentsList />
           <CommentForm />
         </section>
-      </ShowFormProvider>
+      </CurrentFormCommentProvider>
     </main>
   )
 }

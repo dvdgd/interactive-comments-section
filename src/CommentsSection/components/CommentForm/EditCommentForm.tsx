@@ -1,9 +1,16 @@
+import { useCurrentFormComment } from "../../../shared/hooks/useShowForm";
 import { CardComponent } from "../CardComponent/CardComponent";
 import { CommentHeader } from "../CommentHeader/CommentHeader";
-import { CommentItemProps } from "../CommentItem/CommentItem";
 import { CommentScore } from "../CommentScore/CommentScore";
+import { useForm } from "./hooks/useForm";
 
-export function EditCommentForm({ comment }: CommentItemProps) {
+export function EditCommentForm() {
+  const { currentComment } = useCurrentFormComment();
+  const { handleFormSubmit } = useForm();
+
+  const comment = currentComment?.edit?.comment;
+  if (comment === undefined) return;
+
   const commentString = comment.replyingTo ? `@${comment.replyingTo} ${comment.content}` : comment.content;
 
   return (
@@ -12,15 +19,15 @@ export function EditCommentForm({ comment }: CommentItemProps) {
       <div className="comment-container">
         <CommentHeader comment={comment} />
         {/* TODO: create handleFormSubmit */}
-        <form action="" onSubmit={() => { }} style={{
+        <form action="" onSubmit={handleFormSubmit} style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-end',
           height: '100%',
         }}>
           <textarea
-            name="textarea"
-            id="textarea"
+            id="comment-edit"
+            name="comment"
             rows={3}
             defaultValue={commentString}
             placeholder="Enter your comment"

@@ -1,3 +1,4 @@
+import { useShowForm } from '../../../shared/hooks/useShowForm';
 import { useUser } from '../../../shared/hooks/useUser';
 import { IconDelete } from '../../../shared/icons/IconDelete';
 import { IconEdit } from '../../../shared/icons/IconEdit';
@@ -26,29 +27,31 @@ function HeadearButton(props: HeadearButtonProps) {
 }
 
 function CommentHeaderButtons({
+  comment,
   userComment,
 }: CommentItemProps & { userComment: boolean }) {
+  const { openForm } = useShowForm();
+
+  const onReply = () => {
+    openForm({ commentId: comment.id });
+  }
+
   return (
     <div className="header-buttons-container">
       {userComment ? (
         <>
-          <HeadearButton
-            icon={<IconDelete />}
-            // TODO: handle on delete
-            onClick={() => {}}
-            color="soft-red"
-          >
+          {/* // TODO: handle on delete */}
+          <HeadearButton icon={<IconDelete />} onClick={() => { }} color="soft-red">
             Delete
           </HeadearButton>
           {/* TODO: handle on edit */}
-          <HeadearButton icon={<IconEdit />} onClick={() => {}}>
+          <HeadearButton icon={<IconEdit />} onClick={() => { }}>
             Edit
           </HeadearButton>
         </>
       ) : (
         <>
-          {/* TODO: handleOnReply */}
-          <HeadearButton icon={<IconReply />} onClick={() => {}}>
+          <HeadearButton icon={<IconReply />} onClick={onReply}>
             Reply
           </HeadearButton>
         </>

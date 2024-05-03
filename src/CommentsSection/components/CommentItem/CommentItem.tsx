@@ -1,5 +1,7 @@
+import { useShowForm } from "../../../shared/hooks/useShowForm";
 import { Comment } from "../../../shared/types";
 import { CardComponent } from "../CardComponent/CardComponent";
+import { CommentForm } from "../CommentForm/CommentForm";
 import { CommentHeader } from "../CommentHeader/CommentHeader";
 import { CommentScore } from "../CommentScore/CommentScore";
 import { NestedCommentsList } from "../NestedCommentItem/NestedCommentItem";
@@ -11,8 +13,10 @@ export type CommentItemProps = {
   };
 };
 
-
 export function CommentItem({ comment }: CommentItemProps) {
+  const { currentComment } = useShowForm();
+
+  const showForm = currentComment?.commentId === comment.id;
   const repliesTo = comment?.replyingTo ? `@${comment.replyingTo}` : '';
 
   return (
@@ -26,6 +30,7 @@ export function CommentItem({ comment }: CommentItemProps) {
           </p>
         </div>
       </CardComponent>
+      {showForm && <CommentForm />}
       <NestedCommentsList
         comments={comment?.replies ?? []}
         parentId={comment.id}

@@ -7,22 +7,17 @@ export function CommentForm() {
 
   return (
     <>
-      <CardComponent
-        style={{
-          marginTop: '1rem',
-          maxWidth: '100%',
-        }}
-      >
-        <img 
-          src={`./avatars/${user.image.png}`} 
-          alt="current user avatar"
+      <CardComponent style={{
+        marginTop: '1rem',
+        maxWidth: '100%',
+      }}>
+        <img
           className="form-avatar"
+          src={`./avatars/${user.image.png}`}
+          alt="current user avatar"
         />
-        <form
-          action="" 
-          // TODO: Add the handleFormSubmit function to the onSubmit prop
-          onSubmit={() => { }}
-        >
+        {/* // TODO: Add the handleFormSubmit function to the onSubmit prop */}
+        <form action="" onSubmit={() => { }}>
           <textarea
             rows={3}
             name="comment"
@@ -31,10 +26,7 @@ export function CommentForm() {
             required
           >
           </textarea>
-          <button
-            type="submit"
-            className="form-submit"
-          >
+          <button type="submit" className="form-submit">
             Send
           </button>
         </form>

@@ -4,7 +4,7 @@ import { CommentItem } from "../CommentItem/CommentItem";
 import './NestedCommentItem.styles.css';
 
 type NestedCommentsListProps = {
-  comments: Comment[];
+  comments: Comment['replies'];
   parentId: string;
 };
 

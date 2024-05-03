@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { comments as initalComents } from "../data.json";
-import { Comment, User } from "../types";
+import { normalizeRawComments } from '../maps/createdAtStrToTimestamp';
+import { Comment, CommentRaw, User } from "../types";
 
 interface ICommentContext {
   comments: Comment[];
@@ -21,7 +22,11 @@ export const CommentsContext = createContext({} as ICommentContext);
 export const CommentsProvider = ({ children }: { children: React.ReactNode }) => {
   const [comments, setComments] = useState<Comment[]>(() => {
     const savedData = localStorage.getItem('@comments');
-    return savedData ? JSON.parse(savedData) : initalComents;
+
+    const parsedSavedData = savedData ? JSON.parse(savedData) as Comment[] : null;
+    if (parsedSavedData) return parsedSavedData;
+
+    return normalizeRawComments(initalComents as CommentRaw[]);
   });
 
   useEffect(() => {
@@ -34,7 +39,7 @@ export const CommentsProvider = ({ children }: { children: React.ReactNode }) =>
       content: params.content,
       user: params.user,
       replyingTo: params.replyingTo,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(),
       score: 0,
       replies: [],
     };

@@ -4,6 +4,7 @@ import { useUser } from '../../../shared/hooks/useUser';
 import { IconDelete } from '../../../shared/icons/IconDelete';
 import { IconEdit } from '../../../shared/icons/IconEdit';
 import { IconReply } from '../../../shared/icons/IconReply';
+import { getElapsedTimeString } from '../../../shared/maps/getElapsedTimeString';
 import { CommentItemProps } from "../CommentItem/CommentItem";
 import './CommentHeader.styles.css';
 
@@ -85,6 +86,7 @@ function CommentHeaderButtons({
 export function CommentHeader({ comment }: CommentItemProps) {
   const { user } = useUser();
   const userComment = comment.user.username === user.username;
+  const timeMessage = getElapsedTimeString(new Date(comment.createdAt));
 
   return (
     <>
@@ -104,7 +106,7 @@ export function CommentHeader({ comment }: CommentItemProps) {
               </span>
             )}</h3>
           </div>
-          <time>{comment.createdAt}</time>
+          <time>{timeMessage}</time>
         </div>
         <CommentHeaderButtons comment={comment} userComment={userComment} />
       </header>

@@ -37,10 +37,12 @@ export function CommentItem({ comment }: CommentItemProps) {
         </div>
       </CardComponent>
       {showForm && <CommentForm />}
-      <NestedCommentsList
-        comments={comment?.replies ?? []}
-        parentId={comment.id}
-      />
+      {comment?.replies && (
+        <NestedCommentsList
+          comments={comment?.replies ?? []}
+          parentId={comment.id}
+        />
+      )}
     </>
   );
 }

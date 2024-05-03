@@ -1,18 +1,17 @@
-
 div.score-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   align-items: center;
   padding: .5rem;
   border-radius: .5rem;
-  width: 100%;
-  max-width: 2rem;
-  height: 100%;
 
   background-color: var(--neutral-light-gray);
   color: var(--primary-moderate-blue);
   font-weight: 400;
+
+  justify-self: start;
+  grid-area: score;
 }
 
 div.score-container button {

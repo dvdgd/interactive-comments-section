@@ -1,21 +1,8 @@
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-div.header-user-info {
+div.user {
   display: flex;
   gap: 1rem;
   align-items: center;
-}
-
-div.header-user-info div {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
+  grid-area: user;
 }
 
 img.header-user-avatar {
@@ -32,6 +19,17 @@ span.header-you-indicator {
   font-size: .75rem;
   font-weight: 400;
   margin-left: .25rem;
+}
+
+div.header-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  align-self: center;
+  justify-self: end;
+
+  grid-area: buttons;
 }
 
 button.moderate-blue {
@@ -63,10 +61,3 @@ button.header-button:hover svg path {
   color: var(--hover-color);
   fill: var(--hover-color);
 }
-
-div.header-buttons-container {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-

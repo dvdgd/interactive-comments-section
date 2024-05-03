@@ -1,12 +1,10 @@
 import { useCurrentFormComment } from "../../../shared/hooks/useShowForm";
 import { Comment } from "../../../shared/types";
-import { CardComponent } from "../CardComponent/CardComponent";
 import { CommentForm } from "../CommentForm/CommentForm";
 import { EditCommentForm } from "../CommentForm/EditCommentForm";
 import { CommentHeader } from "../CommentHeader/CommentHeader";
 import { CommentScore } from "../CommentScore/CommentScore";
 import { NestedCommentsList } from "../NestedCommentItem/NestedCommentItem";
-import './CommentItem.styles.css';
 
 export type CommentItemProps = {
   comment: Comment & {
@@ -27,15 +25,13 @@ export function CommentItem({ comment }: CommentItemProps) {
 
   return (
     <>
-      <CardComponent>
+      <article className="comment-item">
         <CommentScore comment={comment} />
-        <div className="comment-container">
-          <CommentHeader comment={comment} />
-          <p>
-            <span>{repliesTo}</span> {comment.content}
-          </p>
-        </div>
-      </CardComponent>
+        <CommentHeader comment={comment} />
+        <p>
+          <span>{repliesTo}</span> {comment.content}
+        </p>
+      </article>
       {showForm && <CommentForm showReplyAndEdit={true} />}
       {comment?.replies && (
         <NestedCommentsList

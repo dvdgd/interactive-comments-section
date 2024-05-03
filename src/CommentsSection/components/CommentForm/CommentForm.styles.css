@@ -1,7 +1,36 @@
+article.edit-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
+
+  grid-template-areas: 
+    'user user'
+    'form form'
+    'button button'
+    'score buttons';
+
+  gap: 1.2rem;
+}
+
+article.comment-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
+
+  grid-template-areas:
+    'form form'
+    'avatar button';
+  gap: 1.2rem;
+}
+
 img.form-avatar {
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
+
+  grid-area: avatar;
 }
 
 form {
@@ -10,6 +39,7 @@ form {
   align-items: flex-start;
   gap: .5rem;
   width: 100%;
+  grid-area: form;
 }
 
 form textarea {
@@ -27,7 +57,7 @@ form textarea:focus-visible {
 button.form-submit {
   background-color: var(--primary-moderate-blue);
   color: var(--neutral-white);
-  
+
   width: 5.5rem;
   height: 2.5rem;
 
@@ -36,6 +66,9 @@ button.form-submit {
   cursor: pointer;
   font-size: .9rem;
   text-transform: uppercase;
+  align-self: center;
+  justify-self: end;
+  grid-area: button;
 }
 
 button.form-submit:hover {

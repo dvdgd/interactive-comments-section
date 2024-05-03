@@ -1,6 +1,6 @@
+import { useRef } from "react";
 import { useCurrentFormComment } from "../../../shared/hooks/useShowForm";
 import { useUser } from "../../../shared/hooks/useUser";
-import { CardComponent } from "../CardComponent/CardComponent";
 import './CommentForm.styles.css';
 import { useForm } from "./hooks/useForm";
 
@@ -12,15 +12,21 @@ export function CommentForm({ showReplyAndEdit }: CommentFormProps) {
   const { user } = useUser();
   const { currentComment } = useCurrentFormComment();
   const { handleFormSubmit } = useForm();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const replyingTo = currentComment?.reply?.replyingTo ? `@${currentComment.reply.replyingTo}` : '';
   const commentContent = currentComment?.edit?.comment?.content ?? '';
 
   const commentString = `${replyingTo} ${commentContent}`.trim();
 
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    formRef.current?.dispatchEvent(new Event('submit', { bubbles: true }));
+  }
+
   return (
     <>
-      <CardComponent style={{
+      <article className="comment-form" style={{
         marginTop: '1rem',
         maxWidth: '100%',
       }}>
@@ -29,7 +35,7 @@ export function CommentForm({ showReplyAndEdit }: CommentFormProps) {
           src={`./avatars/${user.image.png}`}
           alt="current user avatar"
         />
-        <form action="" onSubmit={handleFormSubmit}>
+        <form ref={formRef} action="" onSubmit={handleFormSubmit}>
           <textarea
             rows={3}
             name="comment"
@@ -39,11 +45,11 @@ export function CommentForm({ showReplyAndEdit }: CommentFormProps) {
             required
           >
           </textarea>
-          <button type="submit" className="form-submit">
-            Send
-          </button>
         </form>
-      </CardComponent>
+        <button type="submit" className="form-submit" onClick={handleButtonClick}>
+          Send
+        </button>
+      </article>
     </>
   );
 }

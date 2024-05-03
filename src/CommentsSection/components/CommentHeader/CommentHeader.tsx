@@ -90,26 +90,22 @@ export function CommentHeader({ comment }: CommentItemProps) {
 
   return (
     <>
-      <header>
-        <div className='header-user-info'>
-          <div>
-            <img
-              className='header-user-avatar'
-              src={`./avatars/${comment.user.image.png}`}
-              alt="user image"
-            />
-            <h3>{comment.user.username} {userComment && (
-              <span className='header-you-indicator' style={{
+      <div className='user'>
+        <img
+          className='header-user-avatar'
+          src={`./avatars/${comment.user.image.png}`}
+          alt="user image"
+        />
+        <h3>{comment.user.username} {userComment && (
+          <span className='header-you-indicator' style={{
 
-              }}>
-                you
-              </span>
-            )}</h3>
-          </div>
-          <time>{timeMessage}</time>
-        </div>
-        <CommentHeaderButtons comment={comment} userComment={userComment} />
-      </header>
+          }}>
+            you
+          </span>
+        )}</h3>
+        <time>{timeMessage}</time>
+      </div>
+      <CommentHeaderButtons comment={comment} userComment={userComment} />
     </>
   );
 }

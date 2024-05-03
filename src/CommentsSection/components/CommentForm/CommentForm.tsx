@@ -14,7 +14,7 @@ export function CommentForm() {
         }}
       >
         <img 
-          src={`./src/assets/avatars/${user.image.png}`} 
+          src={`./avatars/${user.image.png}`} 
           alt="current user avatar"
           className="form-avatar"
         />

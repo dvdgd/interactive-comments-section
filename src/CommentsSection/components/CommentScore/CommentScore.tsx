@@ -1,5 +1,3 @@
-import IconMinus from "../../../assets/icon-minus.svg";
-import IconPlus from "../../../assets/icon-plus.svg";
 import { CommentItemProps } from "../CommentItem/CommentItem";
 import "./CommentScore.styles.css";
 
@@ -10,7 +8,7 @@ export function CommentScore({ comment }: CommentItemProps) {
       <div className="score-container">
         <button type="button">
           <img 
-            src={IconPlus}
+            src="./icon-minus.svg"
             alt="Useful Comment" 
             />
         </button>
@@ -19,7 +17,7 @@ export function CommentScore({ comment }: CommentItemProps) {
         </strong>
         <button type="button">
           <img 
-            src={IconMinus} 
+            src='./icon-plus.svg' 
             alt="Useless Comment" 
           />
         </button>

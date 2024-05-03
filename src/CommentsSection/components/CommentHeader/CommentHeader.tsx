@@ -1,7 +1,4 @@
-import DeleteIcon from '../../../assets/icon-delete.svg';
-import EditIcon from '../../../assets/icon-edit.svg';
-import ReplyIcon from '../../../assets/icon-reply.svg';
-import { useUser } from "../../../shared/hooks/useUser";
+import { useUser } from '../../../shared/hooks/useUser';
 import { CommentItemProps } from "../CommentItem/CommentItem";
 import './CommentHeader.styles.css';
 
@@ -36,7 +33,7 @@ function CommentHeaderButtons({
       {userComment ? (
         <>
           <HeadearButton
-            icon={DeleteIcon}
+            icon="./icon-delete.svg"
             // TODO: handle on delete
             onClick={() => {}}
             color="var(--primary-soft-red)"
@@ -44,14 +41,14 @@ function CommentHeaderButtons({
             Delete
           </HeadearButton>
           {/* TODO: handle on edit */}
-          <HeadearButton icon={EditIcon} onClick={() => {}}>
+          <HeadearButton icon="./icon-edit.svg" onClick={() => {}}>
             Edit
           </HeadearButton>
         </>
       ) : (
         <>
           {/* TODO: handleOnReply */}
-          <HeadearButton icon={ReplyIcon} onClick={() => {}}>
+          <HeadearButton icon="./icon-reply.svg" onClick={() => {}}>
             Reply
           </HeadearButton>
         </>
@@ -71,7 +68,7 @@ export function CommentHeader({ comment }: CommentItemProps) {
           <div>
             <img
               className='header-user-avatar'
-              src={`./src/assets/avatars/${comment.user.image.png}`}
+              src={`./avatars/${comment.user.image.png}`}
               alt="user image"
             />
             <h3>{comment.user.username} {userComment && (

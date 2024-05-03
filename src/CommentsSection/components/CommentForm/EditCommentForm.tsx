@@ -3,7 +3,7 @@ import { CommentHeader } from "../CommentHeader/CommentHeader";
 import { CommentItemProps } from "../CommentItem/CommentItem";
 import { CommentScore } from "../CommentScore/CommentScore";
 
-function EditCommentForm({ comment }: CommentItemProps) {
+export function EditCommentForm({ comment }: CommentItemProps) {
   const commentString = comment.replyingTo ? `@${comment.replyingTo} ${comment.content}` : comment.content;
 
   return (

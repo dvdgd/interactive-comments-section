@@ -15,6 +15,11 @@ interface ICommentContext {
     commentId: string;
     parentId?: string;
   }) => void;
+  editComment: (params: {
+    commentId: string;
+    content: string;
+    parentId?: string;
+  }) => void;
 }
 
 export const CommentsContext = createContext({} as ICommentContext);
@@ -73,11 +78,33 @@ export const CommentsProvider = ({ children }: { children: React.ReactNode }) =>
     setComments([...comments]);
   }
 
+  const editComment: ICommentContext['editComment'] = (params) => {
+    if (!params.parentId) {
+      const comment = comments.find((comment) => comment.id === params.commentId);
+      if (!comment) return;
+
+      comment.content = params.content;
+      setComments([...comments]);
+      return;
+    }
+
+    const parentComment = comments.find((comment) => comment.id === params.parentId);
+    if (!parentComment) return;
+
+    const comment = parentComment.replies.find((comment) => comment.id === params.commentId);
+    if (!comment) return;
+
+    comment.content = params.content;
+    setComments([...comments]);
+    return;
+  }
+
   return (
     <CommentsContext.Provider value={{
       comments,
       addComment,
       deleteComment,
+      editComment,
     }}>
       {children}
     </CommentsContext.Provider>

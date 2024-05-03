@@ -4,7 +4,7 @@ import { useUser } from "../../../../shared/hooks/useUser";
 
 export function useForm() {
   const { user } = useUser();
-  const { addComment } = useComments();
+  const { addComment, editComment } = useComments();
   const { currentComment, closeForm } = useCurrentFormComment();
 
   const getFormContent = (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,13 @@ export function useForm() {
   }
 
   const handleCommentEdit = (comment: string) => {
-    console.log(comment);
+    if (!currentComment?.edit?.comment.id) return;
+
+    editComment({
+      content: comment,
+      commentId: currentComment.edit.comment.id,
+      parentId: currentComment?.edit?.parentCommentId,
+    });
     closeForm();
   }
 

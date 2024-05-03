@@ -18,7 +18,6 @@ export function EditCommentForm() {
       <CommentScore comment={comment} />
       <div className="comment-container">
         <CommentHeader comment={comment} />
-        {/* TODO: create handleFormSubmit */}
         <form action="" onSubmit={handleFormSubmit} style={{
           display: 'flex',
           flexDirection: 'column',

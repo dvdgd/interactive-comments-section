@@ -36,7 +36,7 @@ export function CommentItem({ comment }: CommentItemProps) {
           </p>
         </div>
       </CardComponent>
-      {showForm && <CommentForm />}
+      {showForm && <CommentForm showReplyAndEdit={true} />}
       {comment?.replies && (
         <NestedCommentsList
           comments={comment?.replies ?? []}

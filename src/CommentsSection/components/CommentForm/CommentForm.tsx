@@ -4,7 +4,11 @@ import { CardComponent } from "../CardComponent/CardComponent";
 import './CommentForm.styles.css';
 import { useForm } from "./hooks/useForm";
 
-export function CommentForm() {
+type CommentFormProps = {
+  showReplyAndEdit?: boolean
+}
+
+export function CommentForm({ showReplyAndEdit }: CommentFormProps) {
   const { user } = useUser();
   const { currentComment } = useCurrentFormComment();
   const { handleFormSubmit } = useForm();
@@ -31,7 +35,7 @@ export function CommentForm() {
             name="comment"
             id="comment-text-area"
             placeholder="Write a comment..."
-            defaultValue={commentString ?? null}
+            defaultValue={showReplyAndEdit ? commentString ?? null : undefined}
             required
           >
           </textarea>

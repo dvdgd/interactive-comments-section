@@ -16,7 +16,9 @@ export function NestedCommentsList({ comments, parentId }: NestedCommentsListPro
   return (
     <div className="nested-container">
       <ul>
-        {comments.map((reply) => {
+        {comments.sort((a, b) => {
+          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        }).map((reply) => {
           const childrenComment = { ...reply, parentId };
 
           return (

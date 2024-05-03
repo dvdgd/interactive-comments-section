@@ -9,7 +9,9 @@ function CommentsList() {
 
   return (
     <ul>
-      {comments.map((comment) => {
+      {comments.sort((a, b) => {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      }).map((comment) => {
         return (
           <li key={comment.id} id={`comment-${comment.id}`}>
             <CommentItem comment={comment} />

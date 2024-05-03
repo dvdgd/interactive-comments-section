@@ -34,15 +34,34 @@ span.header-you-indicator {
   margin-left: .25rem;
 }
 
+button.moderate-blue {
+  --color: var(--primary-moderate-blue);
+  --hover-color: var(--primary-moderate-blue-hover);
+}
+
+button.soft-red {
+  --color: var(--primary-soft-red);
+  --hover-color: var(--primary-soft-red-hover);
+}
+
 button.header-button {
+  color: var(--color);
+
   display: flex;
   gap: .5rem;
   padding: 0 .5rem;
-  color: var(--primary-moderate-blue);
   border-radius: .5rem;
   border: none;
   cursor: pointer;
   font-weight: 500;
+}
+
+button.header-button:hover,
+button.header-button:active,
+button.header-button:active svg path,
+button.header-button:hover svg path {
+  color: var(--hover-color);
+  fill: var(--hover-color);
 }
 
 div.header-buttons-container {

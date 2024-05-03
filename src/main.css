@@ -4,6 +4,9 @@
   --primary-light-grayish-blue: hsl(239, 57%, 85%);
   --primary-pale-red: hsl(357, 100%, 86%);
 
+  --primary-moderate-blue-hover: hsla(238, 40%, 52%, 60%);
+  --primary-soft-red-hover: hsla(358, 79%, 66%, 60%);
+
   --neutral-dark-blue: hsl(212, 24%, 26%);
   --neutral-grayish-blue: hsl(211, 10%, 45%);
   --neutral-light-gray: hsl(223, 19%, 93%);
@@ -23,6 +26,11 @@ button {
   border: none;
   background: none;
   cursor: pointer;
+  transition: color .3s ease, background-color .3s ease;
+}
+
+svg path {
+  transition: fill .3s ease;
 }
 
 h3 {
@@ -44,6 +52,6 @@ body {
   color: var(--neutral-grayish-blue);
 }
 
-time, span {
+time, span, textarea {
   font: inherit;
 }

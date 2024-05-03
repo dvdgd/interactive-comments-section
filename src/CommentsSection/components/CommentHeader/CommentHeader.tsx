@@ -1,25 +1,25 @@
 import { useUser } from '../../../shared/hooks/useUser';
+import { IconDelete } from '../../../shared/icons/IconDelete';
+import { IconEdit } from '../../../shared/icons/IconEdit';
+import { IconReply } from '../../../shared/icons/IconReply';
 import { CommentItemProps } from "../CommentItem/CommentItem";
 import './CommentHeader.styles.css';
 
 type HeadearButtonProps = {
   onClick: () => void;
   children: React.ReactNode;
-  icon: string;
+  icon: React.ReactNode;
   color?: string;
 }
 
 function HeadearButton(props: HeadearButtonProps) {
   return (
     <button
-      className="header-button"
+      className={`header-button ${props.color ?? 'moderate-blue'}`}
       type="button"
       onClick={props.onClick}
-      style={{
-        color: props.color,
-      }}
     >
-      <img src={props.icon} alt="Icon" />
+      {props.icon}
       {props.children}
     </button>
   );
@@ -33,22 +33,22 @@ function CommentHeaderButtons({
       {userComment ? (
         <>
           <HeadearButton
-            icon="./icon-delete.svg"
+            icon={<IconDelete />}
             // TODO: handle on delete
             onClick={() => {}}
-            color="var(--primary-soft-red)"
+            color="soft-red"
           >
             Delete
           </HeadearButton>
           {/* TODO: handle on edit */}
-          <HeadearButton icon="./icon-edit.svg" onClick={() => {}}>
+          <HeadearButton icon={<IconEdit />} onClick={() => {}}>
             Edit
           </HeadearButton>
         </>
       ) : (
         <>
           {/* TODO: handleOnReply */}
-          <HeadearButton icon="./icon-reply.svg" onClick={() => {}}>
+          <HeadearButton icon={<IconReply />} onClick={() => {}}>
             Reply
           </HeadearButton>
         </>

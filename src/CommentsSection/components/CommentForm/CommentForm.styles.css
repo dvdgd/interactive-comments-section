@@ -33,3 +33,8 @@ button.form-submit {
   font-size: .9rem;
   text-transform: uppercase;
 }
+
+button.form-submit:hover {
+  background-color: var(--primary-moderate-blue-hover);
+  color: var(--neutral-light-gray);
+}

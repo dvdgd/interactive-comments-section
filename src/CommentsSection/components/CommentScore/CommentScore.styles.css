@@ -22,3 +22,7 @@ div.score-container button {
   align-items: center;
   justify-content: center;
 }
+
+div.score-container button:hover svg path {
+  fill: var(--primary-moderate-blue);
+}

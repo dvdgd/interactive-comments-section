@@ -30,6 +30,7 @@ span.header-you-indicator {
 div.header-buttons-container {
   display: flex;
   align-items: center;
+  justify-content: end;
   gap: .5rem;
 
   align-self: center;
@@ -68,4 +69,15 @@ button.header-button:active svg path,
 button.header-button:hover svg path {
   color: var(--hover-color);
   fill: var(--hover-color);
+}
+
+@media screen and (max-width: 340px) {
+  div.user {
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  div.header-buttons-container {
+    flex-wrap: wrap;
+  }
 }

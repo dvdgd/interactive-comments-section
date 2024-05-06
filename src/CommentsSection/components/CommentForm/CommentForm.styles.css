@@ -45,7 +45,7 @@ form {
 form textarea {
   border-radius: .5rem;
   border: 1px solid var(--neutral-light-gray);
-  padding: .5rem;
+  padding: .5rem 1rem;
   resize: none;
   width: 100%;
 }
@@ -74,4 +74,18 @@ button.form-submit {
 button.form-submit:hover {
   background-color: var(--primary-moderate-blue-hover);
   color: var(--neutral-light-gray);
+}
+
+@media screen and (min-width: 768px) {
+  article.comment-form {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  button.form-submit {
+    align-self: inherit;
+    padding: 0 1.5rem;
+    width: auto;
+  }
 }

@@ -6,13 +6,15 @@ div.score-container {
   padding: .5rem;
   border-radius: .5rem;
 
-  background-color: var(--neutral-light-gray);
   background-color: var(--neutral-very-light-gray);
   color: var(--primary-moderate-blue);
-  font-weight: 400;
 
   justify-self: start;
   grid-area: score;
+}
+
+div.score-container span {
+  font-weight: 500;
 }
 
 div.score-container button {
@@ -39,7 +41,8 @@ div.score-container button.hit:hover svg path {
 @media screen and (min-width: 768px) {
   div.score-container {
     flex-direction: column;
-    width: 2.1rem;
+    width: 2.5rem;
+    gap: 1rem;
 
     justify-self: start;
     align-self: start;

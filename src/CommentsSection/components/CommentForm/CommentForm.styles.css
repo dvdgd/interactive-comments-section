@@ -46,8 +46,12 @@ form textarea {
   border-radius: .5rem;
   border: 1px solid var(--neutral-light-gray);
   padding: .5rem 1rem;
-  resize: none;
+  resize: vertical;
   width: 100%;
+}
+
+::-webkit-resizer {
+  display: none;
 }
 
 form textarea:focus-visible {

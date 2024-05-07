@@ -4,11 +4,11 @@ article.edit-form {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr;
 
-  grid-template-areas: 
+  grid-template-areas:
     'user user'
     'form form'
-    'button button'
-    'score buttons';
+    'score buttons'
+    'button button';
 
   gap: 1.2rem;
 }
@@ -77,6 +77,15 @@ button.form-submit:hover {
 }
 
 @media screen and (min-width: 768px) {
+  article.edit-form {
+    grid-template-columns: 2.5rem auto;
+    gap: 1.2rem;
+    grid-template-areas:
+      'score user buttons'
+      'score form form'
+      'score button button';
+  }
+
   article.comment-form {
     display: flex;
     gap: 1.2rem;

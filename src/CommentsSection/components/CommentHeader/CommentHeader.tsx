@@ -49,7 +49,7 @@ function CommentHeaderButtons({
     openForm({
       edit: {
         comment,
-        parentCommentId: comment?.parentId ?? comment.id,
+        parentCommentId: comment?.parentId,
       },
     });
   }

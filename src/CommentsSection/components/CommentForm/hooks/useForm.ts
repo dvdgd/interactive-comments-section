@@ -12,7 +12,10 @@ export function useForm() {
     const formData = new FormData(form);
     const comment = formData.get('comment') as string;
 
-    return comment.replace(`@${currentComment?.reply?.replyingTo}`, '').trim();
+    const replyingTo = currentComment?.reply?.replyingTo
+      || currentComment?.edit?.comment.replyingTo;
+
+    return comment.replace(`@${replyingTo}`, '').trim();
   }
 
   const handleCommentReply = (comment: string) => {
@@ -39,7 +42,12 @@ export function useForm() {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const comment = getFormContent(event);
-    if (!comment) return;
+    event.currentTarget.reset();
+
+    if (!comment) {
+      closeForm();
+      return;
+    }
 
     if (currentComment?.reply) {
       handleCommentReply(comment);

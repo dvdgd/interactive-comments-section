@@ -33,7 +33,7 @@ export function CommentItem({ comment }: CommentItemProps) {
         </p>
       </article>
       {showForm && <CommentForm showReplyAndEdit={true} />}
-      {comment?.replies && (
+      {comment?.replies?.length > 0 && (
         <NestedCommentsList
           comments={comment?.replies ?? []}
           parentId={comment.id}
